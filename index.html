@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Parcel Sandbox</title>
+  <meta charset="UTF-8" />
+  <link href="src/styles.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <div>
+    <br />
+    <div class="container">
+      <div class="weather-app">
+        <div class="row">
+          <div class="col-8">
+            <form id="search-input">
+              <div class="form-group">
+                <input type="search" class="form-control" autofocus="on" placeholder="Search for a city" id="input"
+                  autocomplete="off" />
+              </div>
+            </form>
+          </div>
+          <div class="col-3">
+            <input type="submit" value="Search" class="form-control btn btn-primary shadow-sm w-100" />
+          </div>
+          <div class="col-1">
+            <button class="btn btn-success shadow-sm w-100" id="current-location-button"><i
+                class="fas fa-map-marker-alt"></i>
+          </div>
+          <h2 class="city" id="city">Lisbon, PT</h2>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-2">
+              <p><strong>Tue</strong>31ºC</p>
+              <i class="fas fa-cloud-sun"></i>
+              <p><strong>Thu</strong>31ºC</p>
+              <i class="fas fa-cloud-sun-rain"></i>
+              <p><strong>Sat</strong>31ºC</p>
+              <i class="fas fa-cloud"></i>
+            </div>
+            <div class="col-2">
+              <p><strong>Wed</strong>31ºC</p>
+              <i class="fas fa-cloud-rain"></i>
+              <p><strong>Fri</strong>31ºC</p>
+              <i class="fas fa-cloud-showers-heavy"></i>
+              <p><strong>Sun</strong>31ºC</p>
+              <i class="fas fa-snowflake"></i>
+            </div>
+            <div class="col-4">
+
+
+              <i class="fas fa-sun"></i>
+              <div>
+                <h1 class="temperature" id="temperature">32</h1>
+
+                <span class="units">
+                  <a href="#" id="celcius">°C</a> |
+                  <a href="#" id="fahrenheit">°F</a>
+              </div>
+            </div>
+            <div class="col-4">
+
+              <h3 class="date-time">Week day, time</h3>
+              <h3 id="humidity"> Humidity: 20% </h3>
+              <h3 id="feels-like"> Feels like:30ºC</h3>
+              <h3 id="min-temp">Min Temp:</h3>
+              <h3 id="max-temp">Max Temp:</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://kit.fontawesome.com/21a18eec09.js" crossorigin="anonymous"></script>
+  <script src="src/index.js"></script>
+</body>
+
+</html>
