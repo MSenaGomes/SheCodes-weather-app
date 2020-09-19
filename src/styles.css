@@ -126,3 +126,7 @@ p {
   left: 65px;
   bottom: 50px;
 }
+.footer {
+  position: relative;
+  left: 135px;
+}
