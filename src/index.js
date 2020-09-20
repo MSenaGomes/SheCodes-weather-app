@@ -23,6 +23,8 @@ if (hour < 10) {
 date.innerHTML = `${day}, ${hour}:${minutes}`;
 
 function showWeather(response) {
+  let iconElement = document.querySelector("#icon1");
+  let iconId = `${response.data.weather[0].icon}`;
   //search city
   let searchCity = document.querySelector("h2.city");
   function changeCity(event) {
@@ -32,6 +34,8 @@ function showWeather(response) {
     searchCity.innerHTML = `${cityInput.value}`;
     let urlCity = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&units=metric&appid=${apiKey}`;
     axios.get(urlCity).then(showWeather);
+    iconElement.className = "";
+    iconElement.classList.add("fas");
   }
   let city = document.querySelector("#search-input");
   city.addEventListener("submit", changeCity);
@@ -78,7 +82,7 @@ function showWeather(response) {
   let humidity = document.querySelector("#humidity");
   humidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
   let description = document.querySelector("#description");
-  description.innerHTML = `${response.data.weather[0].main}`;
+  description.innerHTML = `${response.data.weather[0].description}`;
   let feelsLike = document.querySelector("#feels-like");
   feelsLike.innerHTML = `Feels Like: ${Math.round(
     response.data.main.feels_like
@@ -91,46 +95,44 @@ function showWeather(response) {
   windSpeed.innerHTML = `Wind speed: ${response.data.wind.speed} m/s`;
 
   //icon
-  let iconElement = document.querySelector("#icon1");
-  console.log(response.data.weather[0].icon);
-  // iconElement = `${response.data.weather[0].icon}`;
-  iconElement = "01d";
+
+  console.log(iconId);
   console.log(iconElement);
-  //if (iconElement === "01d") {
-  //  iconElement.innerHTML = <i class="fas fa - sun"></i>;
-  //}
-  if (iconElement === "01n") {
-    iconElement.innerHTML = `<i class="fas fa-moon"></i>`;
+  if (iconId === "01d") {
+    iconElement.classList.add("fa-sun");
   }
-  if (iconElement === "02d") {
-    iconElement.innerHTML = `<i class="fas fa-cloud-sun"></i>`;
+  if (iconId === "01n") {
+    iconElement.classList.add("fa-moon");
   }
-  if (iconElement === "02n") {
-    iconElement.innerHTML = `<i class="fas fa-cloud-moon"></i>`;
+  if (iconId === "02d") {
+    iconElement.classList.add("fa-cloud-sun");
   }
-  if (iconElement === "03d" || iconElement === "03n") {
-    iconElement.innerHTML = `<i class="fas fa-cloud"></i>`;
+  if (iconId === "02n") {
+    iconElement.classList.add("fa-cloud-moon");
   }
-  if (iconElement === "04d" || iconElement === "04n") {
-    iconElement.innerHTML = `<i class="fas fa-cloud"></i>`;
+  if (iconId === "03d" || iconId === "03n") {
+    iconElement.classList.add("fa-cloud");
   }
-  if (iconElement === "09d" || iconElement === "09n") {
-    iconElement.innerHTML = `<i class="fas fa-cloud-showers-heavy"></i>`;
+  if (iconId === "04d" || iconId === "04n") {
+    iconElement.classList.add("fa-cloud");
   }
-  if (iconElement === "10d") {
-    iconElement.innerHTML = `<i class="fas fa-cloud-sun-rain"></i>`;
+  if (iconId === "09d" || iconId === "09n") {
+    iconElement.classList.add("fa-cloud-showers-heavy");
   }
-  if (iconElement === "10n") {
-    iconElement.innerHTML = `<i class="fas fa-cloud-moon-rain"></i>`;
+  if (iconId === "10d") {
+    iconElement.classList.add("fa-cloud-sun-rain");
   }
-  if (iconElement === "11d" || iconElement === "11n") {
-    iconElement.innerHTML = `<i class="fas fa-cloud-showers-heavy"></i>`;
+  if (iconId === "10n") {
+    iconElement.classList.add("fa-cloud-moon-rain");
   }
-  if (iconElement === "13d" || iconElement === "13n") {
-    iconElement.innerHTML = `<i class="fas fa-snowflake"></i>`;
+  if (iconId === "11d" || iconId === "11n") {
+    iconElement.classList.add("fa-cloud-showers-heavy");
   }
-  if (iconElement === "50d" || iconElement === "50n") {
-    iconElement.innerHTML = `<i class="fas fa-smog"></i>`;
+  if (iconId === "13d" || iconId === "13n") {
+    iconElement.classList.add("fa-snowflake");
+  }
+  if (iconId === "50d" || iconId === "50n") {
+    iconElement.classList.add("fa-smog");
   }
 }
 

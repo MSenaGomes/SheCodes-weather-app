@@ -12,11 +12,9 @@ h3 {
   font-size: 15px;
 }
 .fas {
-  font-size: 30px;
-  color: gray;
+  font-size: 100px;
 }
 .fa-sun {
-  font-size: 130px;
   color: yellow;
 }
 #date-time {
@@ -73,6 +71,7 @@ p {
   text-align: center;
 }
 
-#forecast {
-  position: relative;
+.forecast {
+  font-size: 30px;
+  color: gray;
 }
