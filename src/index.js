@@ -1,28 +1,29 @@
-//Homework 4
+//define current time
+let now = new Date();
+let date = document.querySelector("#date-time");
+let days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+let day = days[now.getDay()];
+let hour = now.getHours();
+let minutes = now.getMinutes();
+
+if (minutes < 10) {
+  date.innerHTML = `${day}, ${hour}:0${minutes}`;
+}
+if (hour < 10) {
+  date.innerHTML = `${day}, $0{hour}:${minutes}`;
+}
+date.innerHTML = `${day}, ${hour}:${minutes}`;
+
 function showWeather(response) {
-  //Feature 1
-  let now = new Date();
-  let date = document.querySelector("h3.date-time");
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  let day = days[now.getDay()];
-  let hour = now.getHours();
-  let minutes = now.getMinutes();
-
-  if (minutes < 10) {
-    date.innerHTML = `${day}, ${hour}:0${minutes}`;
-  } else {
-    date.innerHTML = `${day}, ${hour}:${minutes}`;
-  }
-
-  //Feature 2
+  //search city
   let searchCity = document.querySelector("h2.city");
   function changeCity(event) {
     event.preventDefault();
@@ -35,7 +36,8 @@ function showWeather(response) {
   let city = document.querySelector("#search-input");
   city.addEventListener("submit", changeCity);
 
-  //Bonus Feature
+  //convert to Fahrenheit/Celsius
+
   function convertToFahrenheit(event) {
     event.preventDefault();
     let temperatureElement = document.querySelector("#temperature");
@@ -44,17 +46,12 @@ function showWeather(response) {
     feelsLike.innerHTML = `Feels Like: ${Math.round(
       (response.data.main.feels_like * 9) / 5 + 32
     )}ºF`;
-    let minTemp = document.querySelector("#min-temp");
-    minTemp.innerHTML = `Min Temp: ${Math.round(
-      (response.data.main.temp_min * 9) / 5 + 32
-    )}ºF`;
-    let maxTemp = document.querySelector("#max-temp");
-    maxTemp.innerHTML = `Max Temp: ${Math.round(
+    maxminTemp.innerHTML = ` ${Math.round(
       (response.data.main.temp_max * 9) / 5 + 32
-    )}ºF`;
+    )}ºF|${Math.round((response.data.main.temp_min * 9) / 5 + 32)}ºF`;
   }
 
-  function convertToCelcius(event) {
+  function convertToCelsius(event) {
     event.preventDefault();
     let temperatureElement = document.querySelector("#temperature");
     temperatureElement.innerHTML = temperature;
@@ -62,21 +59,15 @@ function showWeather(response) {
     feelsLike.innerHTML = `Feels Like: ${Math.round(
       response.data.main.feels_like
     )}ºC`;
-    let minTemp = document.querySelector("#min-temp");
-    minTemp.innerHTML = `Min Temp: ${Math.round(
-      response.data.main.temp_min
-    )}ºC`;
-    let maxTemp = document.querySelector("#max-temp");
-    maxTemp.innerHTML = `Max Temp: ${Math.round(
+    maxminTemp.innerHTML = ` ${Math.round(
       response.data.main.temp_max
-    )}ºC`;
+    )}ºC|${Math.round(response.data.main.temp_min)}ºC`;
   }
+
   let fahrenheitLink = document.querySelector("#fahrenheit");
   fahrenheitLink.addEventListener("click", convertToFahrenheit);
-  let celciusLink = document.querySelector("#celcius");
-  celciusLink.addEventListener("click", convertToCelcius);
-  //
-  //Homework 5
+  let celsiusLink = document.querySelector("#celsius");
+  celsiusLink.addEventListener("click", convertToCelsius);
 
   console.log(response);
   let temperature = Math.round(response.data.main.temp);
@@ -86,6 +77,8 @@ function showWeather(response) {
   currentCity.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
   let humidity = document.querySelector("#humidity");
   humidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
+  let description = document.querySelector("#description");
+  description.innerHTML = `${response.data.weather[0].main}`;
   let feelsLike = document.querySelector("#feels-like");
   feelsLike.innerHTML = `Feels Like: ${Math.round(
     response.data.main.feels_like
@@ -94,6 +87,8 @@ function showWeather(response) {
   maxminTemp.innerHTML = `${Math.round(
     response.data.main.temp_max
   )}ºC|${Math.round(response.data.main.temp_min)}ºC`;
+  let windSpeed = document.querySelector("#wind");
+  windSpeed.innerHTML = `Wind speed: ${response.data.wind.speed} m/s`;
 }
 
 function retrievePosition(position) {
