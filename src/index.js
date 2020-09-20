@@ -89,6 +89,49 @@ function showWeather(response) {
   )}ºC|${Math.round(response.data.main.temp_min)}ºC`;
   let windSpeed = document.querySelector("#wind");
   windSpeed.innerHTML = `Wind speed: ${response.data.wind.speed} m/s`;
+
+  //icon
+  let iconElement = document.querySelector("#icon1");
+  console.log(response.data.weather[0].icon);
+  // iconElement = `${response.data.weather[0].icon}`;
+  iconElement = "01d";
+  console.log(iconElement);
+  //if (iconElement === "01d") {
+  //  iconElement.innerHTML = <i class="fas fa - sun"></i>;
+  //}
+  if (iconElement === "01n") {
+    iconElement.innerHTML = `<i class="fas fa-moon"></i>`;
+  }
+  if (iconElement === "02d") {
+    iconElement.innerHTML = `<i class="fas fa-cloud-sun"></i>`;
+  }
+  if (iconElement === "02n") {
+    iconElement.innerHTML = `<i class="fas fa-cloud-moon"></i>`;
+  }
+  if (iconElement === "03d" || iconElement === "03n") {
+    iconElement.innerHTML = `<i class="fas fa-cloud"></i>`;
+  }
+  if (iconElement === "04d" || iconElement === "04n") {
+    iconElement.innerHTML = `<i class="fas fa-cloud"></i>`;
+  }
+  if (iconElement === "09d" || iconElement === "09n") {
+    iconElement.innerHTML = `<i class="fas fa-cloud-showers-heavy"></i>`;
+  }
+  if (iconElement === "10d") {
+    iconElement.innerHTML = `<i class="fas fa-cloud-sun-rain"></i>`;
+  }
+  if (iconElement === "10n") {
+    iconElement.innerHTML = `<i class="fas fa-cloud-moon-rain"></i>`;
+  }
+  if (iconElement === "11d" || iconElement === "11n") {
+    iconElement.innerHTML = `<i class="fas fa-cloud-showers-heavy"></i>`;
+  }
+  if (iconElement === "13d" || iconElement === "13n") {
+    iconElement.innerHTML = `<i class="fas fa-snowflake"></i>`;
+  }
+  if (iconElement === "50d" || iconElement === "50n") {
+    iconElement.innerHTML = `<i class="fas fa-smog"></i>`;
+  }
 }
 
 function retrievePosition(position) {
