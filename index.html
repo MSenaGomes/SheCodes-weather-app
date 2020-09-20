@@ -28,57 +28,85 @@
             </form>
           </div>
           <div class="col-3">
-            <input type="submit" value="Search" class="form-control btn btn-primary shadow-sm w-100" />
+            <input type="submit" value="Search" class="form-control btn btn-primary shadow-sm" id="search-button"/>
           </div>
           <div class="col-1">
             <button class="btn btn-success shadow-sm w-100" id="current-location-button"><i
                 class="fas fa-map-marker-alt"></i>
           </div>
-          <h2 class="city" id="city">Lisbon, PT</h2>
+          <h2 class="city" id="city">City, CC</h2>
         </div>
-        <div class="container">
           <div class="row">
-            <div class="col-2">
-              <p><strong>Tue</strong>31ºC</p>
-              <i class="fas fa-cloud-sun"></i>
-              <p><strong>Thu</strong>31ºC</p>
-              <i class="fas fa-cloud-sun-rain"></i>
-              <p><strong>Sat</strong>31ºC</p>
-              <i class="fas fa-cloud"></i>
-            </div>
-            <div class="col-2">
-              <p><strong>Wed</strong>31ºC</p>
-              <i class="fas fa-cloud-rain"></i>
-              <p><strong>Fri</strong>31ºC</p>
-              <i class="fas fa-cloud-showers-heavy"></i>
-              <p><strong>Sun</strong>31ºC</p>
-              <i class="fas fa-snowflake"></i>
-            </div>
             <div class="col-4">
-
-
-              <i class="fas fa-sun"></i>
-              <div>
-                <h1 class="temperature" id="temperature">32</h1>
+            <h3><small>Local Time</small></h3>
+             <h3 class="date-time">Week day, time</h3>
+             <h3>Description</h3>
+             <div id="temperature-degrees">
+                <h1 class="temperature" id="temperature">##</h1>
 
                 <span class="units">
                   <a href="#" id="celcius">°C</a> |
                   <a href="#" id="fahrenheit">°F</a>
               </div>
+              <h3 id="feels-like"> Feels like:##ºC</h3>
+
+            </div>
+            
+            <div class="col-4">
+
+
+              <i class="fas fa-sun"></i>
+              
             </div>
             <div class="col-4">
 
-              <h3 class="date-time">Week day, time</h3>
-              <h3 id="humidity"> Humidity: 20% </h3>
-              <h3 id="feels-like"> Feels like:30ºC</h3>
-              <h3 id="min-temp">Min Temp:</h3>
-              <h3 id="max-temp">Max Temp:</h3>
+              
+              <h3 id="humidity"> Humidity: ##% </h3>
+              <h3 id="wind"> Wind Speed: #km/h </h3>
+              <h3> <strong>MAX|min</strong> </h3>
+              
+              <h3 id="maxmin">##ºC/##ºC</h3>
+              
             </div>
+         
           </div>
-          <p class="footer"> <a href="https://github.com/MSenaGomes/SheCodes-weather-app">Open-source code</a> by MSenaGomes</p>
+            <div class="row" id="forecast">
+              <div class="col-2">
+                <p><strong>Tue</strong></p>
+                <i class="fas fa-cloud-sun"></i>
+              <p>##ºC</p>
+                </div>
+                <div class="col-2">
+                <p><strong>Thu</strong></p>
+                <i class="fas fa-cloud-sun-rain"></i>
+                <p>##ºC</p>
+                </div>
+                <div class="col-2">
+                <p><strong>Sat</strong></p>
+                <i class="fas fa-cloud"></i>
+                <p>##ºC</p>
+              </div>
+              <div class="col-2">
+                <p><strong>Wed</strong></p>
+                <i class="fas fa-cloud-rain"></i>
+                <p>##ºC</p>
+                </div>
+                <div class="col-2">
+                <p><strong>Fri</strong></p>
+                <i class="fas fa-cloud-showers-heavy"></i>
+                <p>##ºC</p>
+                </div>
+                <div class="col-2">
+                <p><strong>Sun</strong></p>
+                <i class="fas fa-snowflake"></i>
+                <p>##ºC</p>
+              </div>
+              </div>
+            </div>
+          <p class="footer"> <a href="https://github.com/MSenaGomes/SheCodes-weather-app" target=_blank>Open-source code</a> by MSenaGomes</p>
         </div>
       </div>
-    </div>
+  
    
   </div>
   <script src="https://kit.fontawesome.com/21a18eec09.js" crossorigin="anonymous"></script>

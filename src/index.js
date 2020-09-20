@@ -10,7 +10,7 @@ function showWeather(response) {
     "Wednesday",
     "Thursday",
     "Friday",
-    "Saturday"
+    "Saturday",
   ];
   let day = days[now.getDay()];
   let hour = now.getHours();
@@ -90,10 +90,10 @@ function showWeather(response) {
   feelsLike.innerHTML = `Feels Like: ${Math.round(
     response.data.main.feels_like
   )}ºC`;
-  let minTemp = document.querySelector("#min-temp");
-  minTemp.innerHTML = `Min Temp: ${Math.round(response.data.main.temp_min)}ºC`;
-  let maxTemp = document.querySelector("#max-temp");
-  maxTemp.innerHTML = `Max Temp: ${Math.round(response.data.main.temp_max)}ºC`;
+  let maxminTemp = document.querySelector("#maxmin");
+  maxminTemp.innerHTML = `${Math.round(
+    response.data.main.temp_max
+  )}ºC|${Math.round(response.data.main.temp_min)}ºC`;
 }
 
 function retrievePosition(position) {
