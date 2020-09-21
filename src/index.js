@@ -16,11 +16,9 @@ let minutes = now.getMinutes();
 
 if (minutes < 10) {
   date.innerHTML = `${day}, ${hour}:0${minutes}`;
+} else {
+  date.innerHTML = `${day}, ${hour}:${minutes}`;
 }
-if (hour < 10) {
-  date.innerHTML = `${day}, $0{hour}:${minutes}`;
-}
-date.innerHTML = `${day}, ${hour}:${minutes}`;
 
 function showWeather(response) {
   let iconElement = document.querySelector("#icon1");
