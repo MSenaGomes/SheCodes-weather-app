@@ -103,34 +103,34 @@ function showWeather(response) {
     iconElement.classList.add("fa-moon");
   }
   if (iconId === "02d") {
-    iconElement.classList.add("fa-cloud-sun");
+    iconElement.classList.add("fa-cloud-sun", "day");
   }
   if (iconId === "02n") {
-    iconElement.classList.add("fa-cloud-moon");
+    iconElement.classList.add("fa-cloud-moon", "night");
   }
   if (iconId === "03d" || iconId === "03n") {
-    iconElement.classList.add("fa-cloud");
+    iconElement.classList.add("fa-cloud", "cloud");
   }
   if (iconId === "04d" || iconId === "04n") {
-    iconElement.classList.add("fa-cloud");
+    iconElement.classList.add("fa-cloud", "cloud");
   }
   if (iconId === "09d" || iconId === "09n") {
-    iconElement.classList.add("fa-cloud-showers-heavy");
+    iconElement.classList.add("fa-cloud-showers-heavy", "cloud");
   }
   if (iconId === "10d") {
-    iconElement.classList.add("fa-cloud-sun-rain");
+    iconElement.classList.add("fa-cloud-sun-rain", "day");
   }
   if (iconId === "10n") {
-    iconElement.classList.add("fa-cloud-moon-rain");
+    iconElement.classList.add("fa-cloud-moon-rain", "night");
   }
   if (iconId === "11d" || iconId === "11n") {
-    iconElement.classList.add("fa-cloud-showers-heavy");
+    iconElement.classList.add("fa-cloud-showers-heavy", "cloud");
   }
   if (iconId === "13d" || iconId === "13n") {
     iconElement.classList.add("fa-snowflake");
   }
   if (iconId === "50d" || iconId === "50n") {
-    iconElement.classList.add("fa-smog");
+    iconElement.classList.add("fa-smog", "cloud");
   }
 }
 
