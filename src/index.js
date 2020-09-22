@@ -1,27 +1,104 @@
 //define current time
-let now = new Date();
-let date = document.querySelector("#date-time");
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-let day = days[now.getDay()];
-let hour = now.getHours();
-let minutes = now.getMinutes();
+function formatDate(timestamp) {
+  let now = new Date(timestamp);
 
-if (minutes < 10) {
-  date.innerHTML = `${day}, ${hour}:0${minutes}`;
-} else {
-  date.innerHTML = `${day}, ${hour}:${minutes}`;
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[now.getDay()];
+  return `${day}, ${formatHours(timestamp)}`;
+}
+
+function formatHours(timestamp) {
+  let now = new Date(timestamp);
+  let hours = now.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = now.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  return `${hours}:${minutes}`;
 }
 function showWeather(response) {
   let iconElement = document.querySelector("#icon1");
   let iconId = `${response.data.weather[0].icon}`;
+  let iconForecast = null;
+  function showForecast(response2) {
+    let forecast = null;
+    let forecastElement = document.querySelector("#forecast");
+    forecastElement.innerHTML = null;
+    let iconIdForecast = null;
+    for (let index = 0; index < 6; index++) {
+      forecast = response2.data.list[index];
+      console.log(forecast);
+
+      forecastElement.innerHTML += `<div class="col-2">
+                <p id="forecast1"><strong>${formatHours(
+                  forecast.dt * 1000
+                )}</strong></p>
+                <i class="fas small" id="icon2"></i>
+                
+              <p><small><strong>${Math.round(
+                forecast.main.temp_max
+              )}º</strong> ${Math.round(forecast.main.temp_min)}º</small></p>
+               
+               </div>`;
+    }
+    for (let index = 0; index < 6; index++) {
+      forecast = response2.data.list[index];
+      iconIdForecast = forecast.weather[0].icon;
+      iconForecast = document.querySelector("#icon2");
+      console.log(iconIdForecast);
+      console.log(iconForecast);
+      iconForecast.className = "";
+      iconForecast.classList.add("fas", "small");
+      if (iconIdForecast === "01d") {
+        iconForecast.classList.add("fa-sun");
+      }
+      if (iconIdForecast === "01n") {
+        iconForecast.classList.add("fa-moon");
+      }
+      if (iconIdForecast === "02d") {
+        iconForecast.classList.add("fa-cloud-sun", "day");
+      }
+      if (iconIdForecast === "02n") {
+        iconForecast.classList.add("fa-cloud-moon", "night");
+      }
+      if (iconIdForecast === "03d" || iconIdForecast === "03n") {
+        iconForecast.classList.add("fa-cloud", "cloud");
+      }
+      if (iconIdForecast === "04d" || iconIdForecast === "04n") {
+        iconForecast.classList.add("fa-cloud", "cloud");
+      }
+      if (iconIdForecast === "09d" || iconIdForecast === "09n") {
+        iconForecast.classList.add("fa-cloud-showers-heavy", "cloud");
+      }
+      if (iconIdForecast === "10d") {
+        iconForecast.classList.add("fa-cloud-sun-rain", "day");
+      }
+      if (iconIdForecast === "10n") {
+        iconForecast.classList.add("fa-cloud-moon-rain", "night");
+      }
+      if (iconIdForecast === "11d" || iconIdForecast === "11n") {
+        iconForecast.classList.add("fa-cloud-showers-heavy", "cloud");
+      }
+      if (iconIdForecast === "13d" || iconIdForecast === "13n") {
+        iconForecast.classList.add("fa-snowflake");
+      }
+      if (iconIdForecast === "50d" || iconIdForecast === "50n") {
+        iconForecast.classList.add("fa-smog", "cloud");
+      }
+    }
+  }
 
   //search city
   let searchCity = document.querySelector("h2.city");
@@ -34,6 +111,9 @@ function showWeather(response) {
     axios.get(urlCity).then(showWeather);
     iconElement.className = "";
     iconElement.classList.add("fas");
+
+    let urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${cityInput.value}&units=metric&appid=${apiKey}`;
+    axios.get(urlForecast).then(showForecast);
   }
   let city = document.querySelector("#search-input");
   city.addEventListener("submit", changeCity);
@@ -72,6 +152,8 @@ function showWeather(response) {
   celsiusLink.addEventListener("click", convertToCelsius);
 
   console.log(response);
+  let date = document.querySelector("#date-time");
+  date.innerHTML = formatDate(response.data.dt * 1000);
   let temperature = Math.round(response.data.main.temp);
   let displayTemp = document.querySelector("#temperature");
   displayTemp.innerHTML = temperature;

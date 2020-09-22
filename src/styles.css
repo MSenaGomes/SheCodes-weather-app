@@ -30,6 +30,14 @@ h3 {
 .fa-sun {
   color: yellow;
 }
+.small {
+  font-size: 50px;
+  position: relative;
+  right: 5px;
+}
+#forecast1 {
+  margin: 0;
+}
 #date-time {
   line-height: 1px;
   font-weight: BOLD;
