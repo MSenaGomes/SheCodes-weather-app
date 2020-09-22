@@ -19,10 +19,10 @@ if (minutes < 10) {
 } else {
   date.innerHTML = `${day}, ${hour}:${minutes}`;
 }
-
 function showWeather(response) {
   let iconElement = document.querySelector("#icon1");
   let iconId = `${response.data.weather[0].icon}`;
+
   //search city
   let searchCity = document.querySelector("h2.city");
   function changeCity(event) {
@@ -93,9 +93,6 @@ function showWeather(response) {
   windSpeed.innerHTML = `Wind speed: ${response.data.wind.speed} m/s`;
 
   //icon
-
-  console.log(iconId);
-  console.log(iconElement);
   if (iconId === "01d") {
     iconElement.classList.add("fa-sun");
   }
