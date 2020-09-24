@@ -1,3 +1,4 @@
+let currentCity = null;
 //define current time
 function formatDate(timestamp) {
   let now = new Date(timestamp);
@@ -25,11 +26,11 @@ function formatHours(timestamp) {
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
-
   return `${hours}:${minutes}`;
 }
+
 function showWeather(response) {
-  let iconElement = document.querySelector("#icon1");
+  let iconElement = document.querySelector("#icon");
   let iconId = `${response.data.weather[0].icon}`;
   let iconForecast = null;
   function showForecast(response2) {
@@ -41,13 +42,16 @@ function showWeather(response) {
       forecast = response2.data.list[index];
       console.log(forecast);
 
-      forecastElement.innerHTML += `<div class="col-2">
+      forecastElement.innerHTML +=
+        `<div class="col-2">
                 <p id="forecast1"><strong>${formatHours(
                   forecast.dt * 1000
                 )}</strong></p>
-                <i class="fas small" id="icon2"></i>
+                <i class="fas small" id="icon` +
+        index +
+        `"></i>
                 
-              <p><small><strong>${Math.round(
+              <p class="tempNumber"><small><strong>${Math.round(
                 forecast.main.temp_max
               )}º</strong> ${Math.round(forecast.main.temp_min)}º</small></p>
                
@@ -56,11 +60,10 @@ function showWeather(response) {
     for (let index = 0; index < 6; index++) {
       forecast = response2.data.list[index];
       iconIdForecast = forecast.weather[0].icon;
-      iconForecast = document.querySelector("#icon2");
+      iconForecast = document.querySelector("#icon" + index);
       console.log(iconIdForecast);
       console.log(iconForecast);
-      iconForecast.className = "";
-      iconForecast.classList.add("fas", "small");
+      iconForecast.className = "fas small";
       if (iconIdForecast === "01d") {
         iconForecast.classList.add("fa-sun");
       }
@@ -106,11 +109,10 @@ function showWeather(response) {
     event.preventDefault();
     let apiKey = "c565dba580c3596e7501993ba5e14f58";
     let cityInput = document.querySelector("#input");
-    searchCity.innerHTML = `${cityInput.value}`;
+    searchCity.innerHTML = cityInput.value;
     let urlCity = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&units=metric&appid=${apiKey}`;
     axios.get(urlCity).then(showWeather);
-    iconElement.className = "";
-    iconElement.classList.add("fas");
+    iconElement.className = "fas";
 
     let urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${cityInput.value}&units=metric&appid=${apiKey}`;
     axios.get(urlForecast).then(showForecast);
@@ -157,7 +159,7 @@ function showWeather(response) {
   let temperature = Math.round(response.data.main.temp);
   let displayTemp = document.querySelector("#temperature");
   displayTemp.innerHTML = temperature;
-  let currentCity = document.querySelector("#city");
+  currentCity = document.querySelector("#city");
   currentCity.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
   let humidity = document.querySelector("#humidity");
   humidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
@@ -219,7 +221,10 @@ function retrievePosition(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
   let urlCurrent = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+  urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${currentCity}&units=metric&appid=${apiKey}`;
   axios.get(urlCurrent).then(showWeather);
+  //console.log(currentCity);
+  // axios.get(urlForecast).then(showWeather.showForecast);
 }
 function getCurrentLocation(event) {
   event.preventDefault();
