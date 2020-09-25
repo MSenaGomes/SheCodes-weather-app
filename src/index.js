@@ -134,8 +134,6 @@ function showWeather(response) {
     )}ºF|${Math.round((response.data.main.temp_min * 9) / 5 + 32)}ºF`;
     celsiusLink.classList.remove("active");
     fahrenheitLink.classList.add("active");
-    // let forecastTemp=document.querySelector("tempNumber");
-    // forecastTemp.innerHTML =
   }
 
   function convertToCelsius(event) {
@@ -239,3 +237,7 @@ let buttonCurrent = document.querySelector("#current-location-button");
 buttonCurrent.addEventListener("click", getCurrentLocation);
 
 navigator.geolocation.getCurrentPosition(retrievePosition);
+
+//To be improved:
+//Hours changing according to the timezone of the searched teaching
+//Forecast temperature convert to celsius and fahrenheit
