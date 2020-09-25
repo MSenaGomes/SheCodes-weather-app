@@ -114,6 +114,8 @@ function showWeather(response) {
 
     urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${cityInput.value}&units=metric&appid=${apiKey}`;
     axios.get(urlForecast).then(showForecast);
+    celsiusLink.classList.add("active");
+    fahrenheitLink.classList.remove("active");
   }
   let city = document.querySelector("#search-input");
   city.addEventListener("submit", changeCity);
