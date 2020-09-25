@@ -92,3 +92,10 @@ p {
   font-size: 30px;
   color: gray;
 }
+.active {
+  color: rgb(33, 33, 33);
+  cursor: default;
+}
+
+.active:hover {
+  text-decoration: none;

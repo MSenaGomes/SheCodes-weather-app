@@ -1,5 +1,6 @@
 let currentCity = null;
 let apiKey = "c565dba580c3596e7501993ba5e14f58";
+let forecast = null;
 //define current time
 function formatDate(timestamp) {
   let now = new Date(timestamp);
@@ -35,7 +36,6 @@ function showWeather(response) {
   let iconId = `${response.data.weather[0].icon}`;
   let iconForecast = null;
   function showForecast(response2) {
-    let forecast = null;
     let forecastElement = document.querySelector("#forecast");
     forecastElement.innerHTML = null;
     let iconIdForecast = null;
@@ -130,6 +130,10 @@ function showWeather(response) {
     maxminTemp.innerHTML = ` ${Math.round(
       (response.data.main.temp_max * 9) / 5 + 32
     )}ºF|${Math.round((response.data.main.temp_min * 9) / 5 + 32)}ºF`;
+    celsiusLink.classList.remove("active");
+    fahrenheitLink.classList.add("active");
+    // let forecastTemp=document.querySelector("tempNumber");
+    // forecastTemp.innerHTML =
   }
 
   function convertToCelsius(event) {
@@ -143,6 +147,8 @@ function showWeather(response) {
     maxminTemp.innerHTML = ` ${Math.round(
       response.data.main.temp_max
     )}ºC|${Math.round(response.data.main.temp_min)}ºC`;
+    celsiusLink.classList.add("active");
+    fahrenheitLink.classList.remove("active");
   }
 
   let fahrenheitLink = document.querySelector("#fahrenheit");
