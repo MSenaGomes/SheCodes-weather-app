@@ -119,7 +119,6 @@ function showWeather(response) {
   city.addEventListener("submit", changeCity);
 
   //convert to Fahrenheit/Celsius
-
   function convertToFahrenheit(event) {
     event.preventDefault();
     let temperatureElement = document.querySelector("#temperature");
