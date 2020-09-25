@@ -1,4 +1,5 @@
 let currentCity = null;
+let apiKey = "c565dba580c3596e7501993ba5e14f58";
 //define current time
 function formatDate(timestamp) {
   let now = new Date(timestamp);
@@ -44,9 +45,7 @@ function showWeather(response) {
 
       forecastElement.innerHTML +=
         `<div class="col-2">
-                <p id="forecast1"><strong>${formatHours(
-                  forecast.dt * 1000
-                )}</strong></p>
+                <p><strong>${formatHours(forecast.dt * 1000)}</strong></p>
                 <i class="fas small" id="icon` +
         index +
         `"></i>
@@ -107,14 +106,13 @@ function showWeather(response) {
   let searchCity = document.querySelector("h2.city");
   function changeCity(event) {
     event.preventDefault();
-    let apiKey = "c565dba580c3596e7501993ba5e14f58";
     let cityInput = document.querySelector("#input");
     searchCity.innerHTML = cityInput.value;
     let urlCity = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&units=metric&appid=${apiKey}`;
     axios.get(urlCity).then(showWeather);
     iconElement.className = "fas";
 
-    let urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${cityInput.value}&units=metric&appid=${apiKey}`;
+    urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${cityInput.value}&units=metric&appid=${apiKey}`;
     axios.get(urlForecast).then(showForecast);
   }
   let city = document.querySelector("#search-input");
@@ -175,6 +173,9 @@ function showWeather(response) {
   )}ºC|${Math.round(response.data.main.temp_min)}ºC`;
   let windSpeed = document.querySelector("#wind");
   windSpeed.innerHTML = `Wind speed: ${response.data.wind.speed} m/s`;
+  let urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${response.data.name}&units=metric&appid=${apiKey}`;
+  console.log(currentCity);
+  axios.get(urlForecast).then(showForecast);
 
   //icon
   if (iconId === "01d") {
@@ -217,14 +218,10 @@ function showWeather(response) {
 
 function retrievePosition(position) {
   console.log(position);
-  let apiKey = "c565dba580c3596e7501993ba5e14f58";
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
   let urlCurrent = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
-  urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${currentCity}&units=metric&appid=${apiKey}`;
   axios.get(urlCurrent).then(showWeather);
-  //console.log(currentCity);
-  // axios.get(urlForecast).then(showWeather.showForecast);
 }
 function getCurrentLocation(event) {
   event.preventDefault();
